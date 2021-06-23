@@ -5,69 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Chatt.Views"
         mc:Ignorable="d"
-        Title="GIGACHAT" Height="450" Width="800">
+        Visibility="{Binding IsVisible, Mode=TwoWay}"
+        Title="GIGACHAT" Height="450" Width="925" >
+
+    <Window.Resources>
+       
+    </Window.Resources>
+
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="0.4*" />
-            <RowDefinition Height="13*"/>
-            <RowDefinition Height="0.4*"/>
-            <RowDefinition Height="30" />
-        </Grid.RowDefinitions>
-
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="4*"/>
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-
-        <ListView Name="UsersList" ItemsSource="{Binding ClientList, UpdateSourceTrigger=PropertyChanged}" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="0" Grid.RowSpan="3" VerticalAlignment="Stretch" >
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock FontSize="14" Text="{Binding Path=ClientName}" />
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListView>
-
-        <ListView Name="ChatBox" ItemsSource="{Binding Messages, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Stretch" Grid.Row="0"  VerticalAlignment="Stretch">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Margin="5">
-                        <TextBlock x:Name="name" Text="{Binding Path=Name}" />
-                        <TextBlock FontSize="18" Text="{Binding Path=Text}" />
-                        <TextBlock FontSize="9" Text="{Binding Path=Time}" />
-                    </StackPanel>
-                    <DataTemplate.Triggers>
-                        <DataTrigger Binding="{Binding Path=IsMy}" Value="true">
-                            <Setter TargetName="name" Property="TextBlock.Foreground" Value="Gray"/>
-                        </DataTrigger>
-                    </DataTemplate.Triggers>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListView>
-
-        <TextBlock Grid.Row="2"  Text="{Binding Path=ClientMessage}"/>
-
-        <ListView Name="FilesList" Grid.Column="2" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" Grid.RowSpan="3" VerticalAlignment="Stretch" Width="auto">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn/>
-                </GridView>
-            </ListView.View>
-        </ListView>
-
-        <Grid Grid.Column="1" Grid.Row="3">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="9*" />
-                <ColumnDefinition Width="0.5*"/>
-                <ColumnDefinition Width="0.5*" />
-            </Grid.ColumnDefinitions>
-
-            <TextBox Name ="MessageBox" Text="{Binding MessageText}" Grid.Column="0" HorizontalAlignment="Stretch"  Grid.Row="0" TextWrapping="Wrap" VerticalAlignment="Stretch" Height="30"/>
-            <Button Name="SendButton" Command="{Binding SendButtonCommand}"  Grid.Column="1"  Content="&gt;" HorizontalAlignment="Stretch" Grid.Row="0"  VerticalAlignment="Stretch" Background="White"/>
-            <Button Name="AttachButton" Command="{Binding AttachButtonCommand}" Grid.Column="2"  Content="..." HorizontalAlignment="Stretch" Grid.Row="0"  VerticalAlignment="Stretch" Background="White"/>
-        </Grid>
-
+        <Frame Background="White"
+            Content="{Binding CurrentPage, UpdateSourceTrigger=PropertyChanged}"
+           />
     </Grid>
 </Window>

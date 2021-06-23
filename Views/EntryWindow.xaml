@@ -4,9 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Chatt.Views"
+        Visibility="{Binding EntryIsVisible, Mode=TwoWay}"
         mc:Ignorable="d"
-        Title="GIGACHAT ENTRY" Height="225" Width="500" ResizeMode="NoResize">
-    <Grid>
+        Title="Window1" Height="300" Width="600">
+
+    <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -24,9 +26,13 @@
                 <ColumnDefinition Width="1.5*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBox Text ="{Binding Path=UserName}" Grid.Column="1" FontSize="20"/>
-            <Button Command ="{Binding EntryButtonCommand}" Grid.Column="2" Content="ОК" FontSize="20" Background="White"/>
+            <TextBox Text ="{Binding Path=UserName}" Grid.Column="1" FontSize="20" Height="40" >
+                <TextBox.InputBindings>
+                    <KeyBinding Key="Enter" Command="{Binding EntryButtonCommand}"/>
+                </TextBox.InputBindings>
+            </TextBox>
+            <Button Command ="{Binding EntryButtonCommand}" Template="{StaticResource btTemplate}" Grid.Column="2" Content="ОК" FontSize="20" Height="40"
+                    Foreground="White" />
         </Grid>
-        
     </Grid>
 </Window>

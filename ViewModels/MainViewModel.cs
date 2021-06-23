@@ -13,148 +13,115 @@ using System.Collections.ObjectModel;
 using System.Windows.Threading;
 using System.Collections.Specialized;
 using MessageBox = System.Windows.MessageBox;
+using System.Windows.Controls;
+using Chatt.Views;
 
 namespace Chatt.ViewModels
 {
     public class MainViewModel:INotifyPropertyChanged
     {
-        private ICommand sendButtonCommand;
-        public ICommand SendButtonCommand
+        private ICommand entryButtonCommand;
+        public ICommand EntryButtonCommand
         {
             get
             {
-                return sendButtonCommand ?? (sendButtonCommand = new RelayCommand(obj => SendButton_Click()));
+                return entryButtonCommand ?? (entryButtonCommand = new RelayCommand(obj => EntryButton_Click()));
             }
         }
 
-        private ICommand attachButtonCommand;
-        public ICommand AttachButtonCommand
+        private ICommand entryEnterCommand;
+        public ICommand EntryEnterCommand
         {
             get
             {
-                return attachButtonCommand ?? (attachButtonCommand = new RelayCommand(obj => AttachButton_Click()));
+                return entryEnterCommand ?? (entryEnterCommand = new RelayCommand(obj => EntryButton_Click()));
             }
         }
 
-        // Текст набираемого сообщения
-        private string messageText;
-        public string MessageText
+        private string userName;
+        public string UserName
         {
-            get { return messageText; }
+            get { return userName; }
             set
             {
-                messageText = value;
-                OnPropertyChanged(nameof(MessageText));
+                userName = value;
+                OnPropertyChanged(nameof(UserName));
             }
         }
 
-        // Текст сообщения для пользователя
-        private string clientMessage;
-        public string ClientMessage
+        public Page ChatPage;
+        private Page EntryPage;
+
+        private Page currentPage;
+        public Page CurrentPage
         {
-            get { return clientMessage; }
+            get { return currentPage; }
             set
             {
-                clientMessage = value;
-                OnPropertyChanged(nameof(ClientMessage));
+                currentPage = value;
+                OnPropertyChanged(nameof(CurrentPage));
             }
         }
 
-        private bool working;
+        private Visibility isVisible; // = Visibility.Hidden;
+        public Visibility IsVisible
+        {
+            get { return isVisible; }
+            set
+            {
+                isVisible = value;
+                OnPropertyChanged(nameof(IsVisible));
+            }
+        }
 
-        // Список сообщений в чате
-        public ObservableCollection<VisibleMessage> Messages { get; set; }
-        // Список клиентов онлайн
-        public ObservableCollection<NewClient> ClientList { get; set; }
-        ClientObject Client { get; set; }
+        private Visibility entryIsVisible; // = Visibility.Hidden;
+        public Visibility EntryIsVisible
+        {
+            get { return entryIsVisible; }
+            set
+            {
+                entryIsVisible = value;
+                OnPropertyChanged(nameof(EntryIsVisible));
+            }
+        }
+
+        private EntryWindow entwnd;
 
         public MainViewModel()
         {
-            
-            Client = new ClientObject();
-            Messages = new ObservableCollection<VisibleMessage>();
-            ClientList = new ObservableCollection<NewClient>();
-            ClientList.Add(new NewClient { ClientName=Client.UserName});
+            ChatPage = new Pages.ChatPage();
+            // EntryPage = new Pages.EntryPage();
 
-            MessageText = "";
-            try
-            {
-               Client.Start();
-            }
-            // Не удалось подключиться
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                Environment.Exit(0);
-            }
-            working = true;
-            Listen_messagesAsync();
+            IsVisible = Visibility.Hidden;
+            EntryIsVisible = Visibility.Visible;
+
+            ShowWindow();
+
+
+            CurrentPage = ChatPage;
         }
 
-        // Нажатие кнопки отправки сообщения
-        private void SendButton_Click()
+        public void ShowWindow()
         {
-            if (MessageText.Length != 0)
-            {
-                Client.Send_Message(MessageText);
-                // OnPropertyChanged(nameof(Client.Messages));
-                Messages.Add(new VisibleMessage { Name = Client.UserName, Text = MessageText, Time = DateTime.Now.ToString("HH:mm"), IsMy="true"});
-                MessageText = "";
-            }
+            entwnd = new EntryWindow();
+            entwnd.DataContext = this;
+            entwnd.Show();
         }
 
-        private void AttachButton_Click()
+        public void AuthrizationChecked(string ClientName)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            if (openFileDialog.ShowDialog() == true)
-            {
-                string FileName = openFileDialog.FileName;
-                MessageBox.Show(FileName);
-            }
+            IsVisible = Visibility.Visible;
+
         }
+        
+        ClientObject Client { get; set; }
 
-        // Поток слушания соощений с сревера
-        private async void Listen_messagesAsync()
+        private void EntryButton_Click()
         {
-            await Task.Run(()=> Listen_messages());
-        }
-
-        private void Listen_messages()
-        {
-            while (working)
-            {
-                try {
-                    Data data = Client.Recieve_Message();
-                    if (data.Message != null)
-                    {
-                        VisibleMessage vmes = new VisibleMessage { Name = data.Message.Name, Text = data.Message.Text, Time = data.Message.Time /*DateTime.Now.ToString("HH:mm") */ , IsMy = "false" };
-
-                        Application.Current.Dispatcher.BeginInvoke(new Action(() => { Messages.Add(vmes); }));
-                    }
-                    if (data.NewClient != null)
-                    {
-                        Application.Current.Dispatcher.BeginInvoke(new Action(() => { ClientList.Add(data.NewClient); }));
-                    }
-                }
-                catch(Exception ex)
-                {
-                    working = false;
-                    ClientMessage = "Соединение аотеряно. Переподключение...";
-                    while (!working)
-                    {
-                        try
-                        {
-                            Client.Start();
-                            ClientMessage = "";
-                            working = true;
-                        }
-                        catch(Exception exc)
-                        {
-                            MessageBox.Show(exc.ToString());
-                        }
-                    }
-                }
-            }
+            UserName = UserName;
+            IsVisible = Visibility.Visible;
+            EntryIsVisible = Visibility.Hidden;
+            entwnd.Close();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

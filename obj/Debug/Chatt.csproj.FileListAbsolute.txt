@@ -1,7 +1,6 @@
 C:\Users\EEEone\Desktop\Chatt\bin\Debug\Chatt.exe.config
 C:\Users\EEEone\Desktop\Chatt\bin\Debug\Chatt.exe
 C:\Users\EEEone\Desktop\Chatt\bin\Debug\Chatt.pdb
-C:\Users\EEEone\Desktop\Chatt\obj\Debug\Chatt.csprojAssemblyReference.cache
 C:\Users\EEEone\Desktop\Chatt\obj\Debug\Views\MainWindow.g.cs
 C:\Users\EEEone\Desktop\Chatt\obj\Debug\App.g.cs
 C:\Users\EEEone\Desktop\Chatt\obj\Debug\Chatt_MarkupCompile.cache
@@ -34,8 +33,6 @@ C:\Users\EEEone\Desktop\Chatt\bin\Debug\System.ValueTuple.xml
 C:\Users\EEEone\Desktop\Chatt\obj\Debug\Chatt.csproj.CopyComplete
 C:\Users\EEEone\Desktop\Chatt\bin\Debug\FirstFloor.ModernUI.dll
 C:\Users\EEEone\Desktop\Chatt\bin\Debug\FirstFloor.ModernUI.xml
-C:\Users\EEEone\Desktop\Chatt\obj\Debug\Views\EntryWindow.g.cs
-C:\Users\EEEone\Desktop\Chatt\obj\Debug\Views\EntryWindow.baml
 C:\Users\EEEone\Desktop\rep1\EEEOnee\Chatt\obj\Debug\Views\EntryWindow.g.cs
 C:\Users\EEEone\Desktop\rep1\EEEOnee\Chatt\obj\Debug\Views\MainWindow.g.cs
 C:\Users\EEEone\Desktop\rep1\EEEOnee\Chatt\obj\Debug\App.g.cs
@@ -74,3 +71,14 @@ C:\Users\EEEone\Desktop\rep1\EEEOnee\Chatt\obj\Debug\Chatt.csproj.GenerateResour
 C:\Users\EEEone\Desktop\rep1\EEEOnee\Chatt\obj\Debug\Chatt.csproj.CoreCompileInputs.cache
 C:\Users\EEEone\Desktop\rep1\EEEOnee\Chatt\obj\Debug\Chatt.csproj.CopyComplete
 C:\Users\EEEOne\Desktop\rep1\EEEOnee\Chatt\obj\Debug\Chatt.csproj.AssemblyReference.cache
+C:\Users\EEEOne\Desktop\Chatt\obj\Debug\Chatt.csproj.AssemblyReference.cache
+C:\Users\EEEOne\Desktop\Chatt\obj\Debug\Pages\ChatPage.g.cs
+C:\Users\EEEOne\Desktop\Chatt\obj\Debug\Pages\ChatPage.baml
+C:\Users\EEEOne\Desktop\Chatt\obj\Debug\Views\EntryWindow.g.cs
+C:\Users\EEEOne\Desktop\Chatt\obj\Debug\Views\EntryWindow.baml
+C:\Users\EEEOne\Desktop\Chatt\bin\Debug\MaterialDesignColors.dll
+C:\Users\EEEOne\Desktop\Chatt\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\EEEOne\Desktop\Chatt\bin\Debug\MaterialDesignColors.pdb
+C:\Users\EEEOne\Desktop\Chatt\bin\Debug\MaterialDesignThemes.Wpf.pdb
+C:\Users\EEEOne\Desktop\Chatt\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\EEEOne\Desktop\Chatt\obj\Debug\App.baml

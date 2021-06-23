@@ -54,7 +54,7 @@ namespace Chatt.Models
             // string jsonObj = JsonSerializer.Serialize<Message>(message);
             string jsonObj = JsonSerializer.Serialize<Data>(data);
             byte[] bytes = Encoding.Default.GetBytes(jsonObj);
-            sock.Send(bytes);
+            // sock.Send(bytes);
             // Messages.Add(message);
             // OnPropertyChanged(nameof(Messages));
         }

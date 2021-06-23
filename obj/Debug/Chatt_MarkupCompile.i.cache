@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\EEEOne\Desktop\rep1\EEEOnee\Chatt\obj\Debug\
+C:\Users\EEEOne\Desktop\Chatt\obj\Debug\
 Chatt
 none
 false
 DEBUG;TRACE
-C:\Users\EEEOne\Desktop\rep1\EEEOnee\Chatt\App.xaml
-2-283475890
+C:\Users\EEEOne\Desktop\Chatt\App.xaml
+3-1086112198
 
-15706684211
-24-173153002
-Views\EntryWindow.xaml;Views\MainWindow.xaml;
+16179699274
+26893966711
+Pages\ChatPage.xaml;Views\MainWindow.xaml;Views\EntryWindow.xaml;
 
-True
+False
 
