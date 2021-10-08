@@ -12,7 +12,7 @@ using MessageBox = System.Windows.MessageBox;
 
 namespace Chatt.Models
 {
-    class ClientObject
+    public class ClientObject
     {
         private Socket sock;
         private IPEndPoint localIP;
@@ -28,13 +28,13 @@ namespace Chatt.Models
             }
         }
 
-        public ClientObject()
+        public ClientObject(string Username)
         {
             sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             localIP = new IPEndPoint(IPAddress.Parse("192.168.56.1"), 5555);
             
             Random rand = new Random();
-            UserName = "Ivan" + rand.Next().ToString();
+            this.UserName = UserName;// "Ivan" + rand.Next().ToString();
 
             // Messages = new ObservableCollection<Message>();
         }
@@ -54,10 +54,56 @@ namespace Chatt.Models
             // string jsonObj = JsonSerializer.Serialize<Message>(message);
             string jsonObj = JsonSerializer.Serialize<Data>(data);
             byte[] bytes = Encoding.Default.GetBytes(jsonObj);
-            // sock.Send(bytes);
-            // Messages.Add(message);
-            // OnPropertyChanged(nameof(Messages));
         }
+
+        // Отправка заявки на аутентификацию пользователя
+        public int Authentification(string userName, byte[] passwordHash)
+        {
+            UserAuthentification userAuth = new UserAuthentification { UserName = userName, PasswordHash = passwordHash };
+            Data data = new Data { UserAuthentification = userAuth };
+
+            string jsonObj = JsonSerializer.Serialize<Data>(data);
+            byte[] bytes = Encoding.Default.GetBytes(jsonObj);
+            sock.Send(bytes);
+
+            // Получение результата аутентификации
+            byte[] respbytes = new byte[1024];
+            sock.Receive(respbytes);
+
+            string respnObj = Encoding.Default.GetString(respbytes);
+
+            int endOfData = respnObj.IndexOf((char)0x00);
+            respnObj = respnObj.Substring(0, endOfData);
+
+            Response response = JsonSerializer.Deserialize<Response>(respnObj);
+
+            return response.Result;
+        }
+
+        // Отправка заявки на регистрацию пользователя
+        public int Registration(string name, string surname, string userName, byte[] passwordHash, byte[] salt)
+        {
+            UserRegistration userReg = new UserRegistration { Name = name, Surname = surname, UserName = userName, PasswordHash = passwordHash, Salt = salt };
+            Data data = new Data { UserRegistration = userReg };
+
+            string jsonObj = JsonSerializer.Serialize<Data>(data);
+            byte[] bytes = Encoding.Default.GetBytes(jsonObj);
+            sock.Send(bytes);
+
+            // Получение результата регистрации
+            byte[] respbytes = new byte[1024];
+            sock.Receive(respbytes);
+
+            string respnObj = Encoding.Default.GetString(respbytes);
+
+            int endOfData = respnObj.IndexOf((char)0x00);
+            respnObj = respnObj.Substring(0, endOfData);
+
+            Response response = JsonSerializer.Deserialize<Response>(respnObj);
+
+            return response.Result;
+        }
+
 
         public Data Recieve_Message()
         {
@@ -72,13 +118,6 @@ namespace Chatt.Models
             // MessageBox.Show(jsonObj);
             Data data = JsonSerializer.Deserialize<Data>(jsonObj);
             return data;
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
     }
 }

@@ -24,7 +24,7 @@ namespace Chatt.Pages
         public ChatPage()
         {
             InitializeComponent();
-            DataContext = new ChatViewModel();
+            // DataContext = new ChatViewModel();
         }
     }
 }

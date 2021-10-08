@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -10,14 +7,12 @@ using System.Windows.Input;
 using System.Windows;
 using Microsoft.Win32;
 using System.Collections.ObjectModel;
-using System.Windows.Threading;
-using System.Collections.Specialized;
 using MessageBox = System.Windows.MessageBox;
 using System.Windows.Controls;
 
 namespace Chatt.ViewModels
 {
-    public class ChatViewModel : INotifyPropertyChanged
+    public class ChatViewModel : ViewModel
     {
         // Команды Кнопок
         private ICommand sendButtonCommand;
@@ -84,30 +79,15 @@ namespace Chatt.ViewModels
         public ObservableCollection<NewClient> ClientList { get; set; }
         ClientObject Client { get; set; }
 
-        public ChatViewModel()
+        public ChatViewModel(ClientObject Client)
         {
-            // ChatPage = new Pages.ChatPage();
-
-            // CurrentPage = ChatPage;
-
-            Client = new ClientObject();
+            UpdateSettings();
+            this.Client = Client;
             Messages = new ObservableCollection<VisibleMessage>();
             ClientList = new ObservableCollection<NewClient>();
             ClientList.Add(new NewClient { ClientName = Client.UserName });
 
-            MessageText = "";
-            try
-            {
-                // Client.Start();
-            }
-            // Не удалось подключиться
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                Environment.Exit(0);
-            }
-            working = true;
-            // Listen_messagesAsync();
+            MessageText = "";     
         }
 
         // Нажатие кнопки отправки сообщения
@@ -116,7 +96,6 @@ namespace Chatt.ViewModels
             if (MessageText.Length != 0)
             {
                 Client.Send_Message(MessageText);
-                // OnPropertyChanged(nameof(Client.Messages));
                 Messages.Add(new VisibleMessage { Name = Client.UserName, Text = MessageText, Time = DateTime.Now.ToString("HH:mm"), IsMy = "true" });
                 MessageText = "";
             }
@@ -177,11 +156,5 @@ namespace Chatt.ViewModels
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-        }
     }
 }

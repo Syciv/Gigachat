@@ -12,7 +12,5 @@ namespace Chatt.Models
 
         [JsonPropertyName("time")]
         public string Time { get; set; }
-        [JsonPropertyName("newClient")]
-        public string NewClient { get; set; }
     }
 }

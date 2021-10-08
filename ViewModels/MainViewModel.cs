@@ -1,56 +1,48 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Chatt.Models;
 using System.Windows.Input;
 using System.Windows;
-using Microsoft.Win32;
-using System.Collections.ObjectModel;
-using System.Windows.Threading;
-using System.Collections.Specialized;
 using MessageBox = System.Windows.MessageBox;
 using System.Windows.Controls;
 using Chatt.Views;
 
 namespace Chatt.ViewModels
 {
-    public class MainViewModel:INotifyPropertyChanged
+    public class MainViewModel:ViewModel
     {
-        private ICommand entryButtonCommand;
-        public ICommand EntryButtonCommand
+        private ICommand chatButtonCommand;
+        public ICommand ChatButtonCommand
         {
             get
             {
-                return entryButtonCommand ?? (entryButtonCommand = new RelayCommand(obj => EntryButton_Click()));
+                return chatButtonCommand ?? (chatButtonCommand = new RelayCommand(obj => ChatButtonCommand_Click()));
             }
         }
 
-        private ICommand entryEnterCommand;
-        public ICommand EntryEnterCommand
+        private ICommand customizationButtonCommand;
+        public ICommand CustomizationButtonCommand
         {
             get
             {
-                return entryEnterCommand ?? (entryEnterCommand = new RelayCommand(obj => EntryButton_Click()));
+                return customizationButtonCommand ?? (customizationButtonCommand = new RelayCommand(obj => CustomizationButtonCommand_Click()));
             }
         }
 
-        private string userName;
-        public string UserName
+        private ICommand settingsButtonCommand;
+        public ICommand SettingsButtonCommand
         {
-            get { return userName; }
-            set
+            get
             {
-                userName = value;
-                OnPropertyChanged(nameof(UserName));
+                return settingsButtonCommand ?? (settingsButtonCommand = new RelayCommand(obj => SettingsButtonCommand_Click()));
             }
         }
+
 
         public Page ChatPage;
-        private Page EntryPage;
+        private Page CustomizationPage;
+        // private Page SettingsPage;
 
         private Page currentPage;
         public Page CurrentPage
@@ -74,61 +66,86 @@ namespace Chatt.ViewModels
             }
         }
 
-        private Visibility entryIsVisible; // = Visibility.Hidden;
-        public Visibility EntryIsVisible
-        {
-            get { return entryIsVisible; }
-            set
-            {
-                entryIsVisible = value;
-                OnPropertyChanged(nameof(EntryIsVisible));
-            }
-        }
+        public ClientObject Client { get; set; }
 
         private EntryWindow entwnd;
+        private RegistrationWindow regwnd;
 
         public MainViewModel()
         {
-            ChatPage = new Pages.ChatPage();
-            // EntryPage = new Pages.EntryPage();
-
+            UpdateSettings();
             IsVisible = Visibility.Hidden;
-            EntryIsVisible = Visibility.Visible;
+            
 
-            ShowWindow();
+            Client = new ClientObject("хихи");
+            try
+            {
+                Client.Start();
+            }
+            // Не удалось подключиться
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                Environment.Exit(0);
+            }
+            // working = true;
+            // AuthentificationChecked();
+            ShowEntryWindow();
 
-
-            CurrentPage = ChatPage;
         }
 
-        public void ShowWindow()
+        public void ShowEntryWindow()
         {
             entwnd = new EntryWindow();
-            entwnd.DataContext = this;
+            entwnd.DataContext = new EntryViewModel(this);
             entwnd.Show();
         }
 
-        public void AuthrizationChecked(string ClientName)
+        public void ShowRegistrationWindow()
         {
-            IsVisible = Visibility.Visible;
-
-        }
-        
-        ClientObject Client { get; set; }
-
-        private void EntryButton_Click()
-        {
-            UserName = UserName;
-            IsVisible = Visibility.Visible;
-            EntryIsVisible = Visibility.Hidden;
+            regwnd = new RegistrationWindow();
+            regwnd.DataContext = new RegistrationViewModel(this);
             entwnd.Close();
+            regwnd.Show();
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        public void AuthentificationChecked()
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            ChatPage = new Pages.ChatPage();
+            ChatPage.DataContext = new ChatViewModel(Client);
+            CustomizationPage = new Pages.CustomizationSettingsPage();
+            CustomizationPage.DataContext = new CustomizationSettingsViewModel(this);
+            //SettingsPage = new Pages.ChatPage();
+            // ChatPage.DataContext = new ChatViewModel(Client);
+
+            CurrentPage = ChatPage;
+
+            IsVisible = Visibility.Visible;
+            // EntryIsVisible = Visibility.Hidden;
+            entwnd.Close();
+            regwnd.Close();
+
         }
+
+        private void ChatButtonCommand_Click()
+        {
+            CurrentPage = ChatPage;
+        }
+
+        private void CustomizationButtonCommand_Click()
+        {
+            CurrentPage = CustomizationPage;
+        }
+
+        private void SettingsButtonCommand_Click()
+        {
+            // CurrentPage = SettingsPage;
+        }
+
+        public void Exit()
+        {
+
+        }
+
     }
 }

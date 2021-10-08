@@ -82,3 +82,8 @@ C:\Users\EEEOne\Desktop\Chatt\bin\Debug\MaterialDesignColors.pdb
 C:\Users\EEEOne\Desktop\Chatt\bin\Debug\MaterialDesignThemes.Wpf.pdb
 C:\Users\EEEOne\Desktop\Chatt\bin\Debug\MaterialDesignThemes.Wpf.xml
 C:\Users\EEEOne\Desktop\Chatt\obj\Debug\App.baml
+C:\Users\EEEOne\Desktop\Chatt\obj\Debug\Views\RegistrationWindow.g.cs
+C:\Users\EEEOne\Desktop\Chatt\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\EEEOne\Desktop\Chatt\obj\Debug\Views\RegistrationWindow.baml
+C:\Users\EEEOne\Desktop\Chatt\obj\Debug\Pages\CustomizationSettingsPage.g.cs
+C:\Users\EEEOne\Desktop\Chatt\obj\Debug\Pages\CustomizationSettingsPage.baml

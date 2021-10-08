@@ -8,8 +8,7 @@
       d:DesignHeight="450" d:DesignWidth="925"
       Title="ChatPage">
 
-
-    <Grid Background="White">
+    <Grid Background="{Binding Background}">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.4*" />
             <RowDefinition Height="13*"/>
@@ -23,12 +22,12 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <ListView Name="UsersList" ItemsSource="{Binding ClientList, UpdateSourceTrigger=PropertyChanged}" BorderBrush="DarkViolet" BorderThickness="1"
+        <ListView Name="UsersList" ItemsSource="{Binding ClientList, UpdateSourceTrigger=PropertyChanged}"  BorderThickness="1"
                   Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="0" Grid.RowSpan="3" VerticalAlignment="Stretch" >
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <TextBlock FontSize="14" Text="{Binding Path=ClientName}" />
+                        <TextBlock FontSize="14" Text="{Binding Path=ClientName}" Foreground="{Binding Foreground}" />
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
@@ -52,7 +51,7 @@
             </ListBox.ItemTemplate>
         </ListView>
 
-        <ListView Name="FilesList" BorderBrush="DarkViolet" BorderThickness="1"
+        <ListView Name="FilesList"  BorderThickness="1"
                   Grid.Column="2" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" Grid.RowSpan="3" VerticalAlignment="Stretch" Width="auto">
             <ListView.View>
                 <GridView>
@@ -74,9 +73,9 @@
                     <KeyBinding Key="Enter" Command="{Binding SendButtonCommand}"/>
                 </TextBox.InputBindings>
             </TextBox>
-                <Button Name="SendButton" Command="{Binding SendButtonCommand}" Template="{StaticResource btTemplate}" Foreground="White"
+            <Button Name="SendButton" Command="{Binding SendButtonCommand}" Template="{StaticResource btTemplate}" Foreground="{Binding Foreground}"
                     Grid.Column="1"  Content="&gt;" HorizontalAlignment="Stretch" Grid.Row="0"  VerticalAlignment="Stretch"/>
-            <Button Name="AttachButton" Command="{Binding AttachButtonCommand}" Template="{StaticResource btTemplate}" Foreground="White"
+            <Button Name="AttachButton" Command="{Binding AttachButtonCommand}" Template="{StaticResource btTemplate}" Foreground="{Binding Foreground}"
                     Grid.Column="2"  Content="..." HorizontalAlignment="Stretch" Grid.Row="0"  VerticalAlignment="Stretch"/>
         </Grid>
 
