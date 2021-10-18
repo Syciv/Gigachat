@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Chatt.Views"
         Visibility="{Binding EntryIsVisible, Mode=TwoWay}"
         mc:Ignorable="d"
-        Title="CHATT Вход" Height="400" Width="600">
+        Title="GIGACHAT Вход" Height="400" Width="600">
 
     <Grid>
         <Grid.RowDefinitions>

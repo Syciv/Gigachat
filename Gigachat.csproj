@@ -129,12 +129,13 @@
     </Compile>
     <Compile Include="Models\Response.cs" />
     <Compile Include="Models\UserAuthentification.cs" />
+    <Compile Include="Models\UserProfile.cs" />
     <Compile Include="Models\UserRegistration.cs" />
-    <Compile Include="Models\ClientObject.cs" />
+    <Compile Include="Core\ClientObject.cs" />
     <Compile Include="Models\Data.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\VisibleMessage.cs" />
-    <Compile Include="Models\NewClient.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Models\RelayCommand.cs" />
     <Compile Include="Pages\ChatPage.xaml.cs">
       <DependentUpon>ChatPage.xaml</DependentUpon>
@@ -142,8 +143,11 @@
     <Compile Include="Pages\CustomizationSettingsPage.xaml.cs">
       <DependentUpon>CustomizationSettingsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Services\HashService.cs" />
+    <Compile Include="Pages\ProfilePage.xaml.cs">
+      <DependentUpon>ProfilePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\ChatViewModel.cs" />
+    <Compile Include="ViewModels\ProfileViewModel.cs" />
     <Compile Include="ViewModels\CustomizationSettingsViewModel.cs" />
     <Compile Include="ViewModels\EntryViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
@@ -205,6 +209,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\CustomizationSettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ProfilePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Chatt.Models
+namespace Gigachat.Models
 {
     public class VisibleMessage:Message
     {

@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Chatt.Models
+namespace Gigachat.Models
 {
     public class Message
     {

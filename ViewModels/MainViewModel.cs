@@ -1,7 +1,6 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using Chatt.Models;
+using Gigachat.Models;
+using Gigachat.Core;
 using System.Windows.Input;
 using System.Windows;
 using MessageBox = System.Windows.MessageBox;
@@ -12,6 +11,15 @@ namespace Chatt.ViewModels
 {
     public class MainViewModel:ViewModel
     {
+        private ICommand profileButtonCommand;
+        public ICommand ProfileButtonCommand
+        {
+            get
+            {
+                return profileButtonCommand ?? (profileButtonCommand = new RelayCommand(obj => ProfileButtonCommand_Click()));
+            }
+        }
+
         private ICommand chatButtonCommand;
         public ICommand ChatButtonCommand
         {
@@ -42,6 +50,7 @@ namespace Chatt.ViewModels
 
         public Page ChatPage;
         private Page CustomizationPage;
+        private Page ProfilePage;
         // private Page SettingsPage;
 
         private Page currentPage;
@@ -109,13 +118,17 @@ namespace Chatt.ViewModels
             regwnd.Show();
         }
 
-        public void AuthentificationChecked()
+        public void AuthentificationChecked(string userName)
         {
+            Client.UserName = userName;
+
             ChatPage = new Pages.ChatPage();
             ChatPage.DataContext = new ChatViewModel(Client);
             CustomizationPage = new Pages.CustomizationSettingsPage();
             CustomizationPage.DataContext = new CustomizationSettingsViewModel(this);
-            //SettingsPage = new Pages.ChatPage();
+            ProfilePage = new Pages.ProfilePage();
+            ProfilePage.DataContext = new ProfileViewModel(Client);
+            // SettingsPage = new Pages.ChatPage();
             // ChatPage.DataContext = new ChatViewModel(Client);
 
             CurrentPage = ChatPage;
@@ -123,8 +136,15 @@ namespace Chatt.ViewModels
             IsVisible = Visibility.Visible;
             // EntryIsVisible = Visibility.Hidden;
             entwnd.Close();
-            regwnd.Close();
+            if (regwnd != null)
+            {
+                regwnd.Close();
+            }
+        }
 
+        private void ProfileButtonCommand_Click()
+        {
+            CurrentPage = ProfilePage;
         }
 
         private void ChatButtonCommand_Click()

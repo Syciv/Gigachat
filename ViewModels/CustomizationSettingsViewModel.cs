@@ -1,4 +1,4 @@
-﻿using Chatt.Models;
+﻿using Gigachat.Models;
 using System;
 using System.Windows;
 using System.Collections.Generic;
@@ -45,6 +45,7 @@ namespace Chatt.ViewModels
                 Properties.Settings.Default.ElementColor1 = clrdlg.Color;
                 Properties.Settings.Default.Save();
                 Element1 = new SolidColorBrush(System.Windows.Media.Color.FromRgb(clrdlg.Color.R, clrdlg.Color.G, clrdlg.Color.B));
+                ParentVM.UpdateSettings();
             }
         }
 
@@ -57,6 +58,7 @@ namespace Chatt.ViewModels
                 Properties.Settings.Default.ElementColor2 = clrdlg.Color;
                 Properties.Settings.Default.Save();
                 Element2 = new SolidColorBrush(System.Windows.Media.Color.FromRgb(clrdlg.Color.R, clrdlg.Color.G, clrdlg.Color.B));
+                ParentVM.UpdateSettings();
             }
         }
 

@@ -11,7 +11,7 @@
     <Grid Background="{Binding Background}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="15*"/>
+            <ColumnDefinition Width="11*"/>
         </Grid.ColumnDefinitions>
 
         <Grid>
@@ -22,12 +22,13 @@
                 <RowDefinition Height="5*"/>
             </Grid.RowDefinitions>
 
-            <Button Content="Чат" Grid.Row="0" Height="50" Width="50" VerticalAlignment="Top" Template="{StaticResource btTemplate}" Command="{Binding ChatButtonCommand}"/>
-            <Button Content="Кастомизация" Grid.Row="1" Height="50" Width="50" VerticalAlignment="Top" Template="{StaticResource btTemplate}" Command="{Binding CustomizationButtonCommand}"/>
-            <Button Content="Настройки" Grid.Row="2" Height="50" Width="50" VerticalAlignment="Top" Template="{StaticResource btTemplate}" Command="{Binding SettingsButtonCommand}"/>
+            <Button Content="Профиль" Grid.Row="0" Height="50" Width="70" VerticalAlignment="Top" FontSize="10" Foreground="White" Template="{StaticResource btTemplate}" Command="{Binding ProfileButtonCommand}"/>
+            <Button Content="Чат" Grid.Row="1" Height="50" Width="70" VerticalAlignment="Top" FontSize="10" Foreground="White" Template="{StaticResource btTemplate}" Command="{Binding ChatButtonCommand}"/>
+            <Button Content="Кастомизация" Grid.Row="2" Height="50" Width="70" FontSize="10" Foreground="White" VerticalAlignment="Top" Template="{StaticResource btTemplate}" Command="{Binding CustomizationButtonCommand}"/>
+            <Button Content="Настройки" Grid.Row="3" Height="50" Width="70" FontSize="10" Foreground="White" VerticalAlignment="Top" Template="{StaticResource btTemplate}" Command="{Binding SettingsButtonCommand}"/>
         </Grid>
 
-        <Frame Background="White" Grid.Column="1"
+        <Frame Background="White" Grid.Column="1"  NavigationUIVisibility="Hidden"
             Content="{Binding CurrentPage, UpdateSourceTrigger=PropertyChanged}"
            />
     </Grid>

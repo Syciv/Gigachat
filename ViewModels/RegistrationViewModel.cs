@@ -1,9 +1,10 @@
-﻿using Chatt.Models;
+﻿using Gigachat.Models;
+using Gigachat.Core;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using MessageBox = System.Windows.MessageBox;
 using System.Windows.Input;
-using Chatt.Services;
+using System.Text;
 
 namespace Chatt.ViewModels
 {
@@ -100,19 +101,15 @@ namespace Chatt.ViewModels
                 return ;
             }
 
-
-            byte[] Salt = HashService.GetSalt();
-            byte[] PasswordHash = HashService.GetHash(Password + Salt);
-
-            int result = ParentVM.Client.Registration(Name, Surname, UserName, PasswordHash, Salt);
+            (int result, string message) = ParentVM.Client.Registration(Name, Surname, UserName, Password);
             if (result == 1)
             {
-                MessageBox.Show("Регистрация прошла успешно (на самом деле не прошла)");
-                ParentVM.AuthentificationChecked();
+                // MessageBox.Show("Регистрация прошла успешно (на самом деле не прошла (ладно всё-таки прошла))");
+                ParentVM.AuthentificationChecked(userName);
             }
             else
             {
-                MessageBox.Show("При регистрации произошла ошибка");
+                MessageBox.Show(message);
             }
 
             // MessageBox.Show(UserName + " " + Name + " " + Surname + " " + Password + " " + ConfirmedPassword);

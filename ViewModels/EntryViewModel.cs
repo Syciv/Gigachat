@@ -1,4 +1,4 @@
-﻿using Chatt.Models;
+﻿using Gigachat.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -73,10 +73,23 @@ namespace Chatt.ViewModels
 
         private void EntryButton_Click()
         {
-            //
-            // Проверка
-            //
-            ParentVM.AuthentificationChecked();
+            if (UserName == "" || Password == "")
+            {
+                MessageBox.Show("Не все поля заполнены!");
+                return;
+            }
+
+            (int result, string message) = ParentVM.Client.Authentification(UserName, Password);
+
+            if (result == 1)
+            {
+                // MessageBox.Show("Залазей");
+                ParentVM.AuthentificationChecked(userName);
+            }
+            else
+            {
+                MessageBox.Show(message);
+            }
         }
 
         private void RegButton_Click() 

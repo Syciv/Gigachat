@@ -2,12 +2,9 @@
 
 namespace Gigachat.Models
 {
-    public class UserAuthentification
+    public class User
     {
         [JsonPropertyName("userName")]
         public string UserName { get; set; }
-
-        [JsonPropertyName("password")]
-        public string Password { get; set; }
     }
 }

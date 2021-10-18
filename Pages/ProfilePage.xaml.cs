@@ -10,27 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Chatt.Views
+namespace Chatt.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для Window1.xaml
+    /// Логика взаимодействия для ProfilePage.xaml
     /// </summary>
-    public partial class EntryWindow : Window
+    public partial class ProfilePage : Page
     {
-        public EntryWindow()
+        public ProfilePage()
         {
             InitializeComponent();
         }
-
-        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
-        {
-            if (this.DataContext != null)
-            { ((dynamic)this.DataContext).Password = ((PasswordBox)sender).Password; }
-
-            
-        }
-
     }
 }

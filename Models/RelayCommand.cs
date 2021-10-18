@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace Chatt.Models
+namespace Gigachat.Models
 {
     public class RelayCommand : ICommand
     {
