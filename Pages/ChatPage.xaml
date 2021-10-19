@@ -22,8 +22,8 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <ListView Name="UsersList" ItemsSource="{Binding ClientList, UpdateSourceTrigger=PropertyChanged}"  BorderThickness="1"
-                  Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="0" Grid.RowSpan="3" VerticalAlignment="Stretch" >
+        <ListView Name="UsersList" ItemsSource="{Binding ClientList, UpdateSourceTrigger=PropertyChanged}" BorderBrush="DarkViolet"  BorderThickness="1,0,1,0"
+                  Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="0" Grid.RowSpan="3" VerticalAlignment="Stretch" Margin="0,15,0,30" >
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
@@ -33,7 +33,7 @@
             </ListBox.ItemTemplate>
         </ListView>
 
-        <ListView Name="ChatBox" ItemsSource="{Binding Messages, UpdateSourceTrigger=PropertyChanged}" BorderBrush="DarkViolet" BorderThickness="1"
+        <ListView Name="ChatBox" ItemsSource="{Binding Messages, UpdateSourceTrigger=PropertyChanged}" BorderBrush="DarkViolet" BorderThickness="0"
                   Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Stretch" Grid.Row="0"  VerticalAlignment="Stretch">
             <ListBox.ItemTemplate>
                 <DataTemplate >
@@ -51,7 +51,7 @@
             </ListBox.ItemTemplate>
         </ListView>
 
-        <ListView Name="FilesList"  BorderThickness="1"
+        <ListView Name="FilesList"  BorderThickness="1,0,1,0"  BorderBrush="DarkViolet" Margin="0,15,0,30"
                   Grid.Column="2" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" Grid.RowSpan="3" VerticalAlignment="Stretch" Width="auto">
             <ListView.View>
                 <GridView>
@@ -60,22 +60,22 @@
             </ListView.View>
         </ListView>
 
-        <Grid Grid.Column="1" Grid.Row="3">
+        <Grid Grid.Column="1" Grid.Row="3" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="9*" />
                 <ColumnDefinition Width="0.5*"/>
                 <ColumnDefinition Width="0.5*" />
             </Grid.ColumnDefinitions>
 
-            <TextBox BorderThickness="2" Name ="MessageBox" Text="{Binding MessageText}" 
-                     Grid.Column="0" HorizontalAlignment="Stretch"  Grid.Row="0" TextWrapping="Wrap" VerticalAlignment="Stretch" Height="30">
+            <TextBox Name ="MessageBox" Text="{Binding MessageText}" Margin="1,4,1,4"  BorderBrush="DarkViolet"
+                     Grid.Column="0" HorizontalAlignment="Stretch"  Grid.Row="0" TextWrapping="Wrap" VerticalAlignment="Stretch">
                 <TextBox.InputBindings>
                     <KeyBinding Key="Enter" Command="{Binding SendButtonCommand}"/>
                 </TextBox.InputBindings>
             </TextBox>
-            <Button Name="SendButton" Command="{Binding SendButtonCommand}" Template="{StaticResource btTemplate}" Foreground="{Binding Foreground}"
+            <Button Name="SendButton" Command="{Binding SendButtonCommand}" Template="{StaticResource btTemplate}" Margin="1,2,1,2" 
                     Grid.Column="1"  Content="&gt;" HorizontalAlignment="Stretch" Grid.Row="0"  VerticalAlignment="Stretch"/>
-            <Button Name="AttachButton" Command="{Binding AttachButtonCommand}" Template="{StaticResource btTemplate}" Foreground="{Binding Foreground}"
+            <Button Name="AttachButton" Command="{Binding AttachButtonCommand}" Template="{StaticResource btTemplate}" Margin="1,2,1,2" 
                     Grid.Column="2"  Content="..." HorizontalAlignment="Stretch" Grid.Row="0"  VerticalAlignment="Stretch"/>
         </Grid>
 

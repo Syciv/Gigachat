@@ -12,7 +12,7 @@
                     Height="{TemplateBinding Height}"
                     Width="{TemplateBinding Width}"
                     BorderBrush="{TemplateBinding BorderBrush}"
-                    BorderThickness="{TemplateBinding BorderThickness}"
+                    BorderThickness="1"
                     Margin="{TemplateBinding Margin}">
 
                 <ContentControl  Margin="{TemplateBinding Padding}"
@@ -27,9 +27,12 @@
                 <Trigger Property="IsMouseOver" Value="true">
                     <Setter Property="Background" Value="LightBlue"/>
                     <Setter Property="Foreground" Value="Black"/>
+                    <Setter Property="BorderBrush" Value="White"/>
                 </Trigger>
                 <Trigger Property="IsMouseOver" Value="false">
                     <Setter Property="Background" Value="DarkViolet" />
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="BorderBrush" Value="White"/>
                 </Trigger>
                 <Trigger Property="IsPressed" Value="True">
                     <Setter Property="BorderBrush" Value="Black" />

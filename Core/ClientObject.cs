@@ -179,7 +179,7 @@ namespace Gigachat.Core
 
                 if (data.UserProfile != null)
                 {
-                    MessageBox.Show("Получил");
+                    // MessageBox.Show("Получил");
                     userProfileBuf = data.UserProfile;
                     profileEvent.Set();
                 }

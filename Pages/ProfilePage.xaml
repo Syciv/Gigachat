@@ -23,9 +23,20 @@
             <RowDefinition Height="8*" />
         </Grid.RowDefinitions>
 
-        <TextBlock Text="{Binding FullName}" FontSize="20" Grid.Row="0" Grid.Column="1"/>
-        <TextBlock Text="{Binding Date}" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right"/>
-        <Image Source="E:\\gigachad.jpg" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Button Content="Изменить фото" Template="{StaticResource btTemplate}" Foreground="White" Grid.Row="1" Grid.Column="0"/>
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="{Binding Login}" FontSize="20" Grid.Row="0"/>
+            <TextBlock Text="{Binding FullName}" FontSize="20" Grid.Row="1"/>
+            <TextBlock Text="{Binding Date}" FontSize="10" Grid.Row="2" />
+        </Grid>
+
+        <Image Source="{Binding ProfileImage}" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Button Content="Изменить фото" Template="{StaticResource btTemplate}" Margin="12,2,12,2" FontSize="11" Foreground="White" Grid.Row="1" Grid.Column="0"/>
     </Grid>
 </Page>
