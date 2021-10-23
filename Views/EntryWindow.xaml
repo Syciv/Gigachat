@@ -16,7 +16,7 @@
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Авторизация"  Grid.Row="1" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Text="Авторизация"  Grid.Row="1" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource TextBlockStyle}"/>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"/>
@@ -33,17 +33,17 @@
                 <RowDefinition Height="0.8*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Text="Логин" Grid.Column="1" Grid.Row="0"/>
-            <TextBox Text ="{Binding Path=UserName}" Grid.Column="1" Grid.Row="1" FontSize="20" Height="35" >
+            <TextBlock Text="Логин" Grid.Column="1" Grid.Row="0" Style="{StaticResource TextBlockStyle}"/>
+            <TextBox  Text ="{Binding Path=UserName}" Grid.Column="1" Grid.Row="1" FontSize="20" Height="35" Style="{StaticResource TextBoxStyle}">
                 <TextBox.InputBindings>
                     <KeyBinding Key="Enter" Command="{Binding EntryButtonCommand}"/>
                 </TextBox.InputBindings>
             </TextBox>
 
-            <TextBlock Text="Пароль" Grid.Column="1" Grid.Row="2"/>
-            <PasswordBox PasswordChar="●"  PasswordChanged="PasswordBox_PasswordChanged" Grid.Column="1" Grid.Row="3" FontSize="20" Height="35">
-                
-            </PasswordBox>
+            <TextBlock Text="Пароль" Grid.Column="1" Grid.Row="2" Style="{StaticResource TextBlockStyle}"/>
+            <PasswordBox PasswordChar="●"  PasswordChanged="PasswordBox_PasswordChanged" Grid.Column="1" Grid.Row="3" FontSize="20" Height="35"  Style="{StaticResource TextBoxStyle}"/>
+
+
             <Button Grid.Row="4" Grid.Column="1" Command="{Binding RegButtonCommand}" Template="{StaticResource btTemplate}" Content="Регистрация" FontSize="12"
                     Foreground="White" Margin="0,2,0,2" HorizontalAlignment="Left" Width="100"/>
             <!--<TextBox Text ="{Binding Path=Password}" Grid.Column="1" Grid.Row="3" FontSize="20" Height="35" >

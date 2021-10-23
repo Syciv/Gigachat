@@ -51,3 +51,5 @@ C:\Users\EEEOne\Desktop\Chatt\obj\Debug\Chatt.exe
 C:\Users\EEEOne\Desktop\Chatt\obj\Debug\Chatt.pdb
 C:\Users\EEEOne\Desktop\Chatt\obj\Debug\Pages\ProfilePage.g.cs
 C:\Users\EEEOne\Desktop\Chatt\obj\Debug\Pages\ProfilePage.baml
+C:\Users\EEEOne\Desktop\Chatt\obj\Debug\Pages\SettingsPage.g.cs
+C:\Users\EEEOne\Desktop\Chatt\obj\Debug\Pages\SettingsPage.baml

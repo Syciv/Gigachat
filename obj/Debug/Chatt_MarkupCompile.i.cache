@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\EEEOne\Desktop\Chatt\App.xaml
-6-1503968655
+7-341746743
 
-29-1358084871
+311400601397
 29-241129273
-Pages\ChatPage.xaml;Pages\CustomizationSettingsPage.xaml;Pages\ProfilePage.xaml;Views\MainWindow.xaml;Views\EntryWindow.xaml;Views\RegistrationWindow.xaml;
+Pages\ChatPage.xaml;Pages\CustomizationSettingsPage.xaml;Pages\ProfilePage.xaml;Pages\SettingsPage.xaml;Views\MainWindow.xaml;Views\EntryWindow.xaml;Views\RegistrationWindow.xaml;
 
-False
+True
 

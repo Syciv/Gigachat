@@ -32,7 +32,8 @@
                 <Trigger Property="IsMouseOver" Value="false">
                     <Setter Property="Background" Value="DarkViolet" />
                     <Setter Property="Foreground" Value="White"/>
-                    <Setter Property="BorderBrush" Value="White"/>
+                    <Setter Property="BorderBrush" Value="DarkBlue"/>
+                    <Setter Property="BorderThickness" Value="3"/>
                 </Trigger>
                 <Trigger Property="IsPressed" Value="True">
                     <Setter Property="BorderBrush" Value="Black" />
@@ -40,6 +41,21 @@
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
+
+        <Style x:Key="TextBlockStyle">
+            <Setter Property="Control.FontFamily" Value="Verdana" />
+            <Setter Property="Control.Background" Value="White" />
+            <Setter Property="Control.Foreground" Value="DarkBlue" />
+            <Setter Property="Control.FontWeight" Value="Bold" />
+        </Style>
+
+        <Style x:Key="TextBoxStyle">
+            <Setter Property="Control.Background" Value="White" />
+            <Setter Property="Control.Foreground" Value="DarkBlue" />
+            <Setter Property="Control.FontWeight" Value="Bold" />
+            <Setter Property="Control.BorderBrush" Value="DarkViolet"/>
+            <Setter Property="Control.BorderThickness" Value="2"/>
+        </Style>
 
     </Application.Resources>
 </Application>

@@ -16,7 +16,7 @@
             <RowDefinition Height="0.3*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Регистрация"  Grid.Row="1" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Text="Регистрация"  Grid.Row="1" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource TextBlockStyle}"/>
         <Grid Grid.Row="2" Grid.RowSpan="3" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -38,30 +38,30 @@
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Text="Имя" Grid.Column="1" Grid.Row="0"/>
-            <TextBox  Grid.Column="1" Grid.Row="1" FontSize="20" Height="35" Text="{Binding Name}" >
+            <TextBlock Text="Имя" Grid.Column="1" Grid.Row="0" Style="{StaticResource TextBlockStyle}"/>
+            <TextBox  Grid.Column="1" Grid.Row="1" FontSize="20" Height="35" Text="{Binding Name}" Style="{StaticResource TextBoxStyle}">
 
             </TextBox>
 
-            <TextBlock Text="Фамилия" Grid.Column="1" Grid.Row="2"/>
-            <TextBox Grid.Column="1" Grid.Row="3" FontSize="20" Height="35" Text="{Binding Surname}">
+            <TextBlock Text="Фамилия" Grid.Column="1" Grid.Row="2" Style="{StaticResource TextBlockStyle}"/>
+            <TextBox Grid.Column="1" Grid.Row="3" FontSize="20" Height="35" Text="{Binding Surname}"  Style="{StaticResource TextBoxStyle}">
     
             </TextBox>
 
-            <TextBlock Text="Логин" Grid.Column="1" Grid.Row="4"/>
-            <TextBox  Grid.Column="1" Grid.Row="5" FontSize="20" Height="35" Text="{Binding UserName}">
+            <TextBlock Text="Логин" Grid.Column="1" Grid.Row="4" Style="{StaticResource TextBlockStyle}"/>
+            <TextBox  Grid.Column="1" Grid.Row="5" FontSize="20" Height="35" Text="{Binding UserName}" Style="{StaticResource TextBoxStyle}">
                 <TextBox.InputBindings>
                     <KeyBinding Key="Enter"/>
                 </TextBox.InputBindings>
             </TextBox>
 
-            <TextBlock Text="Пароль" Grid.Column="1" Grid.Row="6"/>
-            <PasswordBox PasswordChar="●" PasswordChanged="PasswordChanged"  Grid.Column="1" Grid.Row="7" FontSize="20" Height="35">
+            <TextBlock Text="Пароль" Grid.Column="1" Grid.Row="6" Style="{StaticResource TextBlockStyle}"/>
+            <PasswordBox PasswordChar="●" PasswordChanged="PasswordChanged"  Grid.Column="1" Grid.Row="7" FontSize="20" Height="35" Style="{StaticResource TextBoxStyle}">
 
             </PasswordBox>
-            
-            <TextBlock Text="Подтверждение пароля" Grid.Column="1" Grid.Row="8"/>
-            <PasswordBox PasswordChar="●" PasswordChanged="ConfirmedPasswordChanged" Grid.Column="1" Grid.Row="9" FontSize="20" Height="35">
+
+            <TextBlock Text="Подтверждение пароля" Grid.Column="1" Grid.Row="8" Style="{StaticResource TextBlockStyle}"/>
+            <PasswordBox PasswordChar="●" PasswordChanged="ConfirmedPasswordChanged" Grid.Column="1" Grid.Row="9" FontSize="20" Height="35" Style="{StaticResource TextBoxStyle}">
 
             </PasswordBox>
 
