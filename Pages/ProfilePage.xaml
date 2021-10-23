@@ -10,15 +10,14 @@
 
     <Grid Background="White" Margin="10,0,0,0">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-
-            <RowDefinition Height="5*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="35"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="8*" />
         </Grid.RowDefinitions>
@@ -31,12 +30,21 @@
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Text="{Binding Login}" FontSize="20" Grid.Row="0"/>
-            <TextBlock Text="{Binding FullName}" FontSize="20" Grid.Row="1"/>
-            <TextBlock Text="{Binding Date}" FontSize="10" Grid.Row="2" />
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="15*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="{Binding Login}" FontSize="20" Grid.Row="0" Grid.Column="1" Style="{StaticResource TextBlockStyle}"/>
+            <TextBlock Text="{Binding FullName}" FontSize="20" Grid.Row="1" Grid.Column="1" Style="{StaticResource TextBlockStyle}"/>
+            <TextBlock Text="{Binding Date}" FontSize="10" Grid.Row="2" Grid.Column="1" Style="{StaticResource TextBlockStyle}"/>
         </Grid>
 
-        <Image Source="{Binding ProfileImage}" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Button Content="Изменить фото" Template="{StaticResource btTemplate}" Margin="12,2,12,2" FontSize="11" Foreground="White" Grid.Row="1" Grid.Column="0"/>
+        <Border Grid.Row="0" Grid.Column="0" BorderBrush="DarkViolet" BorderThickness="2">
+            <Image Source="{Binding ProfileImage}" Grid.Row="0" Grid.Column="0" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Border>
+        
+        <Button Content="Изменить фото" Template="{StaticResource btTemplate}" Margin="12,2,12,2" FontSize="11" Foreground="White" Grid.Row="1" Grid.Column="0" Command="{Binding ChangeButtonCommand}"/>
+        <TextBlock Text="Не больше 300 кб" Foreground="Gray" FontSize="10" HorizontalAlignment="Center" Grid.Row="2"/>
     </Grid>
 </Page>

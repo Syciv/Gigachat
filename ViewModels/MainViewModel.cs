@@ -51,7 +51,7 @@ namespace Chatt.ViewModels
         public Page ChatPage;
         private Page CustomizationPage;
         private Page ProfilePage;
-        // private Page SettingsPage;
+        private Page SettingsPage;
 
         private Page currentPage;
         public Page CurrentPage
@@ -128,7 +128,8 @@ namespace Chatt.ViewModels
             CustomizationPage.DataContext = new CustomizationSettingsViewModel(this);
             ProfilePage = new Pages.ProfilePage();
             ProfilePage.DataContext = new ProfileViewModel(Client);
-            // SettingsPage = new Pages.ChatPage();
+            SettingsPage = new Pages.SettingsPage();
+            SettingsPage.DataContext = new SettingsViewwModel();
             // ChatPage.DataContext = new ChatViewModel(Client);
 
             CurrentPage = ChatPage;
@@ -159,7 +160,7 @@ namespace Chatt.ViewModels
 
         private void SettingsButtonCommand_Click()
         {
-            // CurrentPage = SettingsPage;
+            CurrentPage = SettingsPage;
         }
 
         public void Exit()

@@ -153,6 +153,30 @@ namespace Gigachat.Core
             }
         }
 
+        public (int, string) ChangeProfileImage(string userName, byte[] imageBytes)
+        {
+            ProfileImage profileImage = new ProfileImage { UserName = userName, Image = imageBytes };
+            Data data = new Data {ProfileImage = profileImage };
+
+            string jsonObj = JsonSerializer.Serialize<Data>(data);
+            byte[] bytes = Encoding.Default.GetBytes(jsonObj);
+            sock.Send(bytes);
+
+            try
+            {
+                responseEvent.WaitOne(5000);
+                Response response = responseBuf;
+                responseBuf = null;
+                responseEvent.Reset();
+
+                return (response.Result, response.Message);
+            }
+            catch
+            {
+                return (0, "Что-то не получилось...");
+            }
+        }
+
         private async void Recieve_dataAsync()
         {
             await Task.Run(() => Recieve_Data());
@@ -162,7 +186,8 @@ namespace Gigachat.Core
         {
             while (true)
             {
-                byte[] bytes = new byte[1024];
+                int bufSize = 510 * 1024;
+                byte[] bytes = new byte[bufSize];
                 int len = sock.Receive(bytes);
                 string jsonObj = Encoding.Default.GetString(bytes);
 
