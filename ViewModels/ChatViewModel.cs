@@ -86,7 +86,9 @@ namespace Chatt.ViewModels
             ClientList = new ObservableCollection<User>();
             ClientList.Add(new User { UserName = Client.UserName });
 
-            MessageText = "";     
+            MessageText = "";
+            working = true;
+            Listen_messagesAsync();
         }
 
         // Нажатие кнопки отправки сообщения
@@ -126,16 +128,6 @@ namespace Chatt.ViewModels
                     VisibleMessage vmes = new VisibleMessage { Name = message.Name, Text = message.Text, Time = message.Time /*DateTime.Now.ToString("HH:mm") */ , IsMy = "false" };
                     Application.Current.Dispatcher.BeginInvoke(new Action(() => { Messages.Add(vmes); }));
 
-                    //if (data.Message != null)
-                    //{
-                    //    VisibleMessage vmes = new VisibleMessage { Name = data.Message.Name, Text = data.Message.Text, Time = data.Message.Time /*DateTime.Now.ToString("HH:mm") */ , IsMy = "false" };
-
-                    //    Application.Current.Dispatcher.BeginInvoke(new Action(() => { Messages.Add(vmes); }));
-                    //}
-                    //if (data.NewClient != null)
-                    //{
-                    //    Application.Current.Dispatcher.BeginInvoke(new Action(() => { ClientList.Add(data.NewClient); }));
-                    //}
                 }
                 catch (Exception ex)
                 {

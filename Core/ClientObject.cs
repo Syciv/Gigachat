@@ -71,6 +71,7 @@ namespace Gigachat.Core
             // string jsonObj = JsonSerializer.Serialize<Message>(message);
             string jsonObj = JsonSerializer.Serialize<Data>(data);
             byte[] bytes = Encoding.Default.GetBytes(jsonObj);
+            sock.Send(bytes);
         }
 
         // Отправка заявки на аутентификацию пользователя
